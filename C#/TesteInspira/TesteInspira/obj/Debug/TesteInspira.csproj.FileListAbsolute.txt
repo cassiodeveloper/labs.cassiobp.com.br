@@ -1,0 +1,6 @@
+C:\Users\Cássio\Documents\GitHub\labs.cassiobp.com.br\C#\TesteInspira\TesteInspira\bin\Debug\TesteInspira.exe.config
+C:\Users\Cássio\Documents\GitHub\labs.cassiobp.com.br\C#\TesteInspira\TesteInspira\bin\Debug\TesteInspira.exe
+C:\Users\Cássio\Documents\GitHub\labs.cassiobp.com.br\C#\TesteInspira\TesteInspira\bin\Debug\TesteInspira.pdb
+C:\Users\Cássio\Documents\GitHub\labs.cassiobp.com.br\C#\TesteInspira\TesteInspira\obj\Debug\TesteInspira.csprojResolveAssemblyReference.cache
+C:\Users\Cássio\Documents\GitHub\labs.cassiobp.com.br\C#\TesteInspira\TesteInspira\obj\Debug\TesteInspira.exe
+C:\Users\Cássio\Documents\GitHub\labs.cassiobp.com.br\C#\TesteInspira\TesteInspira\obj\Debug\TesteInspira.pdb
