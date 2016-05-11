@@ -1,0 +1,9 @@
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\bin\Debug\ReadPDFText.exe.config
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\bin\Debug\ReadPDFText.exe
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\bin\Debug\ReadPDFText.pdb
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\bin\Debug\ICSharpCode.SharpZipLib.dll
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\bin\Debug\itextsharp.dll
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\bin\Debug\itextsharp.xml
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\obj\Debug\ReadPDFText.csprojResolveAssemblyReference.cache
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\obj\Debug\ReadPDFText.exe
+c:\users\mtzcpd1053\documents\visual studio 2013\Projects\ReadPDFText\ReadPDFText\obj\Debug\ReadPDFText.pdb
