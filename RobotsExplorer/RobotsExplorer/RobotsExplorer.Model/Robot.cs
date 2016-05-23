@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace RobotsExplorer.Model
 {
     public class Robot
     {
+        public string Domain { get; set; }
+        public List<string> Allows { get; set; }
+        public List<string> Disallows { get; set; }
+        public List<string> Comments { get; set; }
+        public List<string> UserAgent { get; set; }
     }
 }

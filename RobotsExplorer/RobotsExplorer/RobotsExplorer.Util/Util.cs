@@ -56,5 +56,22 @@ namespace RobotsExplorer.Util
                 throw new Exception("An error occurred while I try to read Response Stream :(", ex);
             }
         }
+
+        public static Robot ParseRobotTxtToRobotObject(string robotTxt)
+        {
+            Robot robot = new Robot();
+            
+            try
+            {
+                // TODO Ler o robotTxt e pegar cada informação
+            }
+            catch (Exception ex)
+            {
+                robot = null;
+                throw new Exception("An error occurred when I try to parse Robot object", ex);
+            }
+
+            return robot;
+        }
     }
 }

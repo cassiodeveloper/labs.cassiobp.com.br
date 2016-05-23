@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using RobotsExplorer.HttpManager;
+using RobotsExplorer.Model;
 
 namespace RobotsExplorer
 {
@@ -45,6 +46,8 @@ namespace RobotsExplorer
             Console.WriteLine(robotsTxt);
             Console.WriteLine();
             Console.WriteLine("-------------------------------------------");
+
+            Robot robot = Util.Util.ParseRobotTxtToRobotObject(robotsTxt);
             
             Console.Read();
         }
