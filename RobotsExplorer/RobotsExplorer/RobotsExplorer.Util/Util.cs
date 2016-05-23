@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace RobotsExplorer.Util
 {
@@ -64,6 +65,8 @@ namespace RobotsExplorer.Util
             try
             {
                 // TODO Ler o robotTxt e pegar cada informação
+                var match = Regex.Match(robotTxt, "([^:]+)/g");
+                Console.WriteLine("Match: " + match.Groups[1].Value);
             }
             catch (Exception ex)
             {
