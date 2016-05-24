@@ -65,7 +65,7 @@ namespace RobotsExplorer.Util
         {
             Robot robot = new Robot();
 
-            robot.Domain = urlTargetTest;
+            robot.Domain = urlTargetTest.ToLower().Replace("/robots.txt", string.Empty);
             
             try
             {
