@@ -1,5 +1,6 @@
 ﻿using RobotsExplorer.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -8,6 +9,8 @@ namespace RobotsExplorer.Util
 {
     public static class Util
     {
+        #region Public Methods
+
         public static IWebProxy FormatProxyStringToProxyObject(string proxyPattern)
         {
             if(string.IsNullOrEmpty(proxyPattern))
@@ -58,15 +61,25 @@ namespace RobotsExplorer.Util
             }
         }
 
-        public static Robot ParseRobotTxtToRobotObject(string robotTxt)
+        public static Robot ParseRobotTxtToRobotObject(string robotTxt, string urlTargetTest)
         {
             Robot robot = new Robot();
+
+            robot.Domain = urlTargetTest;
             
             try
             {
-                // TODO Ler o robotTxt e pegar cada informação
-                var match = Regex.Match(robotTxt, "([^:]+)/g");
-                Console.WriteLine("Match: " + match.Groups[1].Value);
+                var matchUserAgent = GetRegexMatches(robotTxt, "User-agent: (.+)", RegexOptions.None);
+                var matchDisallow = GetRegexMatches(robotTxt, "Disallow: (.+)", RegexOptions.None);
+                var matchAllow = GetRegexMatches(robotTxt, "Allow: (.+)", RegexOptions.None);
+                var matchComments = GetRegexMatches(robotTxt, "# (.+)", RegexOptions.None);
+                var matchSiteMap = GetRegexMatches(robotTxt, "Sitemap: (.+)", RegexOptions.None);
+
+                ParseUserAgentData(matchUserAgent, robot);
+                ParseDisallowData(matchDisallow, robot);
+                ParseAllowData(matchAllow, robot);
+                ParseCommentsData(matchComments, robot);
+                ParseSiteMapData(matchSiteMap, robot);
             }
             catch (Exception ex)
             {
@@ -76,5 +89,78 @@ namespace RobotsExplorer.Util
 
             return robot;
         }
+
+        #endregion
+
+        #region Private and Auxiliary Methods
+
+        private static void ParseSiteMapData(MatchCollection matchSiteMap, Robot robot)
+        {
+            if (matchSiteMap != null && matchSiteMap.Count > 0)
+            {
+                robot.SiteMap = new List<string>();
+
+                foreach (var siteMap in matchSiteMap)
+                    robot.Comments.Add(siteMap.ToString().TrimEnd('\r', '\n').ToLower().Replace("sitemap: ", string.Empty));
+            }
+        }
+
+        private static void ParseCommentsData(MatchCollection matchComments, Robot robot)
+        {
+            if (matchComments != null && matchComments.Count > 0)
+            {
+                robot.Comments = new List<string>();
+
+                foreach (var comments in matchComments)
+                    robot.Comments.Add(comments.ToString().ToLower().TrimEnd('\r', '\n').Replace("# ", string.Empty));
+            }
+        }
+
+        private static void ParseAllowData(MatchCollection matchAllow, Robot robot)
+        {
+            if (matchAllow != null && matchAllow.Count > 0)
+            {
+                robot.Allows = new List<string>();
+
+                foreach (var allow in matchAllow)
+                    robot.Disallows.Add(allow.ToString().ToLower().TrimEnd('\r', '\n').Replace("allow: ", string.Empty));
+            }
+        }
+
+        private static void ParseDisallowData(MatchCollection matchDisallow, Robot robot)
+        {
+            if (matchDisallow != null && matchDisallow.Count > 0)
+            {
+                robot.Disallows = new List<string>();
+
+                foreach (var disallow in matchDisallow)
+                    robot.Disallows.Add(disallow.ToString().TrimEnd('\r', '\n').ToLower().Replace("disallow: ", string.Empty));
+            }
+        }
+
+        private static void ParseUserAgentData(MatchCollection matchUserAgent, Robot robot)
+        {
+            if (matchUserAgent != null && matchUserAgent.Count > 0)
+            {
+                robot.UserAgent = new List<string>();
+
+                foreach (var userAgent in matchUserAgent)
+                    robot.UserAgent.Add(userAgent.ToString().TrimEnd('\r', '\n').ToLower().Replace("user-agent: ", string.Empty));
+            }
+        }
+
+        private static MatchCollection GetRegexMatches(string textToTest, string pattern, RegexOptions options)
+        {
+            try
+            {
+                return Regex.Matches(textToTest, pattern, options);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred when I try to use a Regex :(", ex);
+            }
+        }
+
+        #endregion
     }
 }

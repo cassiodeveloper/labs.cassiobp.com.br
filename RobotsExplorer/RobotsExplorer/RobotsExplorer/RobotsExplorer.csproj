@@ -48,6 +48,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RobotsExplorer.ConfigManager\RobotsExplorer.ConfigManager.csproj">
+      <Project>{72ed040c-083d-4d1e-9763-ffd3cdb2d61f}</Project>
+      <Name>RobotsExplorer.ConfigManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RobotsExplorer.HttpManager\RobotsExplorer.HttpManager.csproj">
       <Project>{3fb6a15b-c118-43be-995d-23a22ac34c92}</Project>
       <Name>RobotsExplorer.HttpManager</Name>

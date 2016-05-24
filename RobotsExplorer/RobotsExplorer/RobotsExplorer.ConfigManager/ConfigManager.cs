@@ -1,8 +1,11 @@
-﻿
-namespace RobotsExplorer.ConfigManager
+﻿namespace RobotsExplorer.ConfigManager
 {
-    public class ConfigManager
+    public static class ConfigManager
     {
+        #region Public Constants
 
+        public const string robotPath = "robots.txt";
+
+        #endregion
     }
 }
