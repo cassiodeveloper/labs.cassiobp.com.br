@@ -84,10 +84,6 @@ namespace RobotsExplorer
                 Util.Util.ChangeConsoleColorToRed();
                 Console.WriteLine("Sorry, I failed when I try to access the target :(");
             }
-
-            Console.WriteLine();
-            
-            AskForAttack();
         }
 
         private static void AskForAttack()
@@ -169,6 +165,11 @@ namespace RobotsExplorer
                     Util.Util.ChangeConsoleColorToRed();
                     Console.WriteLine("Sorry, this directory is no longer part of target domain. Response.HttpStatusCode = 404");
                 }
+                else if (ex.Message.Contains("(403)"))
+                {
+                    Util.Util.ChangeConsoleColorToRed();
+                    Console.WriteLine("This directory is preety safe, I got a (403) response code status :(");
+                }
                 else
                 {
                     Util.Util.ChangeConsoleColorToRed();
@@ -208,11 +209,24 @@ namespace RobotsExplorer
 
             robot = Util.Util.ParseRobotTxtToRobotObject(robotsTxt, _urlTarget);
 
-            Console.WriteLine("Listing 'disallow' directories...");
-            Console.WriteLine();
+            if (robot.Disallows != null && robot.Disallows.Count > 0)
+            {
+                Console.WriteLine("Listing 'disallow' directories...");
+                Console.WriteLine();
 
-            foreach (var disallowDirectory in robot.Disallows)
-                Console.WriteLine(disallowDirectory);
+                foreach (var disallowDirectory in robot.Disallows)
+                    Console.WriteLine(disallowDirectory);
+
+                Console.WriteLine();
+
+                AskForAttack();
+            }
+            else
+            {
+                Console.WriteLine("There is no 'disallow' directories on the target.");
+                Console.WriteLine();
+                FinishExecution();
+            }
         }
 
         #endregion
