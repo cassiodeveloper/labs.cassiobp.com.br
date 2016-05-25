@@ -168,7 +168,7 @@ namespace RobotsExplorer.Util
         {
             try
             {
-                return Regex.Matches(textToTest, pattern, options);
+                return Regex.Matches(textToTest.ToLower(), pattern.ToLower(), options);
             }
             catch (Exception ex)
             {
