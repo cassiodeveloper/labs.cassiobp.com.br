@@ -27,7 +27,7 @@ namespace RobotsExplorer
 
             if (ValidadeOptionsInput(args))
             {
-                _urlTarget = "http://www.cassiobp.com.br/" + ConfigManager.ConfigManager.robotPath;
+                _urlTarget += ConfigManager.ConfigManager.robotPath;
 
                 Execute();
             }
