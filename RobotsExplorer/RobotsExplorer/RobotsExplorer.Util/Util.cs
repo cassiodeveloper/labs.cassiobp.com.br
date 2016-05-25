@@ -90,6 +90,21 @@ namespace RobotsExplorer.Util
             return robot;
         }
 
+        public static void ChangeConsoleColorToRed()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+        }
+
+        public static void ChangeConsoleColorToGreen()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+
+        public static void ChangeConsoleColorToDefault()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         #endregion
 
         #region Private and Auxiliary Methods

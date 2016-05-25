@@ -80,7 +80,10 @@ namespace RobotsExplorer
             if (((HttpWebResponse)response).StatusCode == HttpStatusCode.OK)
                 ProcessResponse((HttpWebResponse)response);
             else
+            {
+                Util.Util.ChangeConsoleColorToRed();
                 Console.WriteLine("Sorry, I failed when I try to access the target :(");
+            }
 
             Console.WriteLine();
             
@@ -113,6 +116,8 @@ namespace RobotsExplorer
 
         private static void FinishExecution()
         {
+            Util.Util.ChangeConsoleColorToDefault();
+            Console.WriteLine();
             Console.WriteLine("Thank you and happy hacking ;)");
         }
 
@@ -125,11 +130,14 @@ namespace RobotsExplorer
 
             foreach (var directory in robot.Disallows)
             {
+                Util.Util.ChangeConsoleColorToDefault();
                 Console.WriteLine();
                 Console.WriteLine("Localizing target for directory: " + directory + " ...");
                 Console.WriteLine();
                 Attack(robot.Domain, directory);
             }
+
+            FinishExecution();
 
             Console.Read();
         }
@@ -142,36 +150,53 @@ namespace RobotsExplorer
                 WebResponse response = request.GetResponse();
 
                 if (((HttpWebResponse)response).StatusCode == HttpStatusCode.OK)
+                {
+                    Util.Util.ChangeConsoleColorToGreen();
                     Console.WriteLine("Directory Listing enabled for directory: " + directory + " ;)");
+                }
                 else
+                {
+                    Util.Util.ChangeConsoleColorToRed();
                     Console.WriteLine("Sorry, I failed when I try to access the target directory or the directory is pretty safe :(");
+                }
 
                 Console.WriteLine();
             }
             catch (WebException ex)
             {
-                if(ex.Message.Contains("(404)"))
+                if (ex.Message.Contains("(404)"))
+                {
+                    Util.Util.ChangeConsoleColorToRed();
                     Console.WriteLine("Sorry, this directory is no longer part of target domain. Response.HttpStatusCode = 404");
+                }
                 else
+                {
+                    Util.Util.ChangeConsoleColorToRed();
                     Console.WriteLine("Sorry, I failed when I try to access the target directory :(");
+                }
             }
             catch (Exception ex)
             {
+                Util.Util.ChangeConsoleColorToRed();
                 Console.WriteLine("Sorry, I failed when I try to access the target directory or the directory is pretty safe :(");
             }
         }
 
         private static void ProcessResponse(HttpWebResponse response)
         {
+            Util.Util.ChangeConsoleColorToGreen();
             Console.WriteLine("TARGET FOUND :)");
             Console.WriteLine();
+            Util.Util.ChangeConsoleColorToDefault();
             Console.WriteLine("Getting Robots.txt...");
             Console.WriteLine();
 
             string robotsTxt = Util.Util.ParseResponseStreamToText(response);
 
+            Util.Util.ChangeConsoleColorToGreen();
             Console.WriteLine("VOILÀ!");
             Console.WriteLine();
+            Util.Util.ChangeConsoleColorToDefault();
             Console.WriteLine("Begin of file");
             Console.WriteLine("-------------------------------------------");
             Console.WriteLine();
